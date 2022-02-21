@@ -1,0 +1,283 @@
+.products {
+  width: 400px;
+  height: 200px;
+  border: 1px solid grey;
+  box-shadow: 5px 5px #888888;
+  margin: auto;
+  margin-top: 200px;
+}
+.products div {
+  display: inline-block;
+  height: 150px;
+  padding: 5px;
+}
+.products .type {
+  width: 30%;
+}
+.products .inputs {
+  width: 60%;
+}
+.products .inputs input {
+  margin-top: 21px;
+  display: block;
+  width: 100%;
+}
+.products p {
+  font-size: 20px;
+  display: flex;
+  justify-content: end;
+}
+.products button {
+  display: block;
+  margin: auto;
+}
+.button {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+.button a {
+  border: 1px solid #787878;
+  border-radius: 15px;
+  margin: 0 25px;
+  background-color: #E8E8E8;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+.noScroll {
+  height: 100%;
+  overflow-y: hidden;
+}
+.scrollKar {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 250px;
+}
+.card-container {
+  max-width: 1200px;
+  border: 1px solid grey;
+  margin-left: 40px;
+  min-height: 100px;
+  margin-top: 30px;
+}
+.card-container .cont {
+  display: flex;
+  justify-content: center;
+}
+.card-container .cont .card {
+  border: 1px solid black;
+  box-shadow: -2px 2px grey;
+  width: 17%;
+  margin: 10px;
+  padding: 5px;
+}
+.card-container .cont .card h2 {
+  margin-left: 30px;
+}
+.card-container .cont .card .set-busket {
+  margin-left: 50px;
+  margin-top: 25px;
+  border: 1px solid dimgray;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.card-container .cont .card input {
+  margin-left: 50px;
+  width: 90px;
+}
+.card-container .cont .card .price {
+  margin: 10px 65px;
+  color: red;
+}
+.karzina {
+  width: 80px;
+  height: 80px;
+  float: right;
+  background-color: grey;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-top: -1200px;
+}
+.karzina img {
+  margin-top: 15px;
+  margin-left: 15px;
+  width: 60%;
+  height: 60%;
+  position: relative;
+}
+.karzina .num {
+  display: flex;
+  float: right;
+  margin-top: -40px;
+}
+.karzina .num p {
+  background-color: green;
+  border: 1px solid green;
+  border-radius: 50%;
+  margin-right: -200px;
+  font-size: 30px;
+  margin-left: -20px;
+  z-index: 1;
+}
+.buy {
+  height: 300px;
+  width: 633px;
+  border: 2px solid black;
+  border-radius: 5px;
+  position: relative;
+  z-index: 5;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #e2e4e7;
+  overflow: auto;
+}
+.buy .closeLine {
+  background-color: silver;
+  height: 20px;
+  position: fixed;
+}
+.buy .closeLine .close {
+  margin-left: 600px;
+  margin-top: 2px;
+  height: 80%;
+}
+.buy #obshi {
+  display: flex;
+  color: purple;
+  font-size: 20px;
+}
+.buy #obshi #obshi1 {
+  margin-left: 0px;
+  margin-top: -20px;
+  margin-left: 40px;
+}
+.buy #obshi .gumar {
+  margin-left: 332px;
+  margin-right: 0;
+}
+#para-1 .row {
+  font-size: 20px;
+  width: 500px;
+  display: flex;
+}
+#para-1 .row .type {
+  margin-left: 40px;
+}
+#para-1 .row .value {
+  margin-left: 150px;
+}
+#para-1 .row .number {
+  margin-left: 40px;
+}
+#para-1 .row .all {
+  margin-left: 30px;
+}
+#para-1 ul {
+  list-style-type: none;
+  width: 567px;
+}
+#para-1 ul :nth-child(even) {
+  background-color: silver;
+}
+#para-1 ul :nth-child(even) ::before {
+  background-color: silver;
+}
+#para-1 ul :nth-child(even) :nth-child(even) {
+  background-color: silver;
+}
+#para-1 ul li {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+#para-1 ul li :nth-child(even) {
+  background-color: #e2e4e7;
+}
+#para-1 ul li .pic {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+}
+#para-1 ul li .name {
+  width: 210px;
+  margin-right: 5px;
+}
+#para-1 ul li .gin {
+  width: 35px;
+  margin-right: 10px;
+}
+#para-1 ul li .last {
+  margin-left: 35px;
+  margin-right: 35px;
+  width: 30px;
+}
+#para-1 ul li .plus-min1 {
+  background-color: Azure;
+  height: 20px;
+  margin-top: 15px;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#para-1 ul li input {
+  height: 15px;
+  margin-top: 15px;
+  width: 50px;
+}
+#para-1 ul li .delete {
+  border-radius: 20px;
+  height: 25px;
+  margin-top: 13px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+.table1 {
+  margin: auto;
+  margin-top: 50px;
+}
+.table1 tr :first-child {
+  width: 600px;
+}
+.table1 tr :nth-child(2) {
+  width: 200px;
+}
+.table1 tr :last-child {
+  width: 300px;
+}
+.contacts {
+  margin-top: 50px;
+}
+.contacts p {
+  font-size: 20px;
+  display: flex;
+  justify-content: end;
+}
+.contacts input {
+  width: 400px;
+  margin-top: 21px;
+  display: block;
+}
+.contacts .contact {
+  margin-left: 420px;
+}
+.contacts .contact div {
+  display: inline-block;
+  margin: auto;
+  padding: 5px;
+}
+.contacts button {
+  margin-left: 90%;
+  height: 30px;
+  border-radius: 10px;
+}
