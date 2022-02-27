@@ -19,7 +19,11 @@
 
             use libs\Db;
             $db = new Db;
-
+            use controllers\AdminController;
+            $admcont = new AdminController();
+            // $cont->cookies();
+            // var_dump($cont->cookies());
+            // print_r($_COOKIE);
             // $pdo = $db->getDb();
             foreach($_COOKIE as $k => $v) {
                 $str = (explode("_", $_COOKIE[$k]));
@@ -37,21 +41,22 @@
             }
             ?> 
         </table>
-        <form class="contacts" action="/?action=addorderinfo" method="post">
-        <div class="contact">
-            <div>
-                <p>first name</p>
-                <p>last name</p>
-                <p>email</p>
+       <!-- action="/?action=addorderinfo" -->
+        <form class="contacts" action="<?php $admcont->feelDb() ?>" method="post">
+            <div class="contact">
+                <div>
+                    <p>first name</p>
+                    <p>last name</p>
+                    <p>email</p>
+                </div>
+                <div>
+                    <input type="text" placeholder="Enter first name" name="fname" required>
+                    <input type="text" placeholder="Enter last name" name="lname" required>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                </div>
             </div>
-            <div>
-                <input type="text" placeholder="Enter first name" name="fname" required>
-                <input type="text" placeholder="Enter last name" name="lname" required>
-                <input type="text" placeholder="Enter Email" name="email" required>
-            </div>
-        </div>
 
-        <button class="set-busket" type="submit">confirm the order</button>
+            <button class="set-busket" type="submit">confirm the order</button>
     </form>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php
+use controllers\AdminController;
+$admcont = new AdminController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +12,8 @@
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <form class="products" action="addtoDb" method="post">
+<!-- action="addtoDb" -->
+    <form class="products" action="<?php $admcont->addtoDb() ?>" method="post">
         <div class="type">
             <p>name</p>
             <p>description</p>
@@ -27,3 +32,4 @@
     </div>
 </body>
 </html>
+

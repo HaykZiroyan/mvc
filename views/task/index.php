@@ -52,7 +52,8 @@ use libs\Db;
                     $curr_cont_cards  =   $array1[$i];
                     foreach ($curr_cont_cards as $card){
                     ?>
-                            <form class="card" action="/?action=cookie" method="post">
+                    <!-- action="/?action=raful" -->
+                            <form class="card"  method="post">
                                 <h3><?=$card["name"];?></h3>
                                 <p><?=$card["description"];?></p>
                                 <h2 class="price"><?=$card["price"];?></h2>
@@ -66,7 +67,11 @@ use libs\Db;
             }
 
             
-    
+            if(isset($_POST['id'])) {
+                $id =  $_POST['id'];
+                $name1 = $_POST['count'];
+                setcookie($id, $id . '_' . $name1,  time() + 3600*24);
+            }
         ?>
     </div>
     <a href="/?action=karzina" class="karzina scrollKar">

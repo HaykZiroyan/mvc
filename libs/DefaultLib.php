@@ -2,13 +2,9 @@
 
 namespace libs;
 
-
-abstract class DefaultLib
-{
-
+abstract class DefaultLib {
 
     protected static $instance;
-
     abstract protected function __construct();
 
     /**

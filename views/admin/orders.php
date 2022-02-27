@@ -31,14 +31,11 @@
 
             while ($row = $table->fetch(PDO::FETCH_ASSOC)) {
                 $userId = $row[user_id];
-                // $users = $db->chooseRow(users, id, $userId);
-                // $pdo->query("SELECT * FROM `users` WHERE `id` = $userId"); //users info
+                
                 $userInfo = $db->chooseRow(users, id, $userId);
                 $productIn = $db->prepareTable(order_products, order_id, $row[id]); 
-                // $pdo->query("SELECT * FROM `order_products` WHERE `order_id` = $row[id]"); //products included in order
                 $prod = $db->chooseRow(order_products, order_id, $row[id]);
                 $productId = $prod[product_id];
-                // $info =  $pdo->query("SELECT * FROM `products` WHERE `id` = $productId"); //product info
                 $productInfo =$db->chooseRow(products, id, $productId);
                 
                 ?>
@@ -54,29 +51,22 @@
                     <th><?php echo($prod[qty]) ?></th>
                     <th><?php echo($productInfo[price] * $prod[qty]) ?></th>
                 </tr>
-<!-- $productIn->fetch(PDO::FETCH_ASSOC) -->
                 <?php
                 $productIn->fetch(PDO::FETCH_ASSOC);
                 while ($row1 = $productIn->fetch(PDO::FETCH_ASSOC)) {
                     $userId1 = $row1[user_id];
-                    // // $users1 =  $pdo->query("SELECT * FROM `users` WHERE `id` = $userId1"); //users info
-                    // $userInfo1 = mysqli_fetch_assoc($users1);
-                    // // $productIn1 =  $pdo->query("SELECT * FROM `order_products` WHERE `order_id` = $row1[id]"); //products included in order
                     $prod1 = $db->chooseRow(order_products, order_id, $row1);
                     $productId1 = $row1[product_id];
-                    // // $info1 =  $pdo->query("SELECT * FROM `products` WHERE `id` = $productId1"); //product info
                     $productInfo1 = $db->chooseRow(products, id, $productId1);
                     ?>
-                    
 
                     <tr>
-                        <th><?php  ?> </th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th><?php 
-                        // echo("1")
                          echo($productInfo1[name]) ?></th>
                         <th><?php 
                         echo($productInfo1[description]) ?></th>
@@ -90,7 +80,6 @@
                     <?php
                 }
             }
-            print_r($db->chooseRow(users, email, 'haik_ziroyan@mail.ru'));
         ?>
     </table>
 </body>

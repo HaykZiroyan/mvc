@@ -1,31 +1,18 @@
 <?php
-
-
 namespace controllers;
-
 
 use libs\Db;
 use libs\Session;
-use libs\Cookies;
 use models\Admin;
-// use models\Task;
+use models\connectDb;
 
-class AdminController extends DefaultController
-{
+class AdminController extends DefaultController {
 
-    protected function checkAdmin()
-    {
+    protected function checkAdmin() {
         $session = Session::getInstance();
         if (!$session->get('isAdmin')) {
             $this->redirect('/?action=login');
         }
-    }
-
-    public function raful() {
-        return $this->loadView('task/raful', compact('adminModel', 'errors'));
-    }
-    public function addorderinfo() {
-        return $this->loadView('task/addorderinfo', compact('adminModel', 'errors'));
     }
 
     public function karzina() {
@@ -45,12 +32,6 @@ class AdminController extends DefaultController
         return $this->loadView('admin/addProducts', compact('adminModel', 'errors'));
     }
 
-    public function addDb() {
-        return $this->loadView('admin/addtoDb', compact('adminModel', 'errors'));
-    }
-    public function addtoDb() {
-        return $this->loadView('admin/addtoDb', compact('adminModel', 'errors'));
-    }
     public function login() {
         $session = Session::getInstance();
         if ($session->get('isAdmin')) {
@@ -67,9 +48,7 @@ class AdminController extends DefaultController
             }
         }
 
-
         $errors = $adminModel->getErrors();
-
         return $this->loadView('admin/login', compact('adminModel', 'errors'));
     }
 
@@ -79,62 +58,54 @@ class AdminController extends DefaultController
         $session->remove('isAdmin');
         $this->redirect('/');
     }
-    public function allCookies() {
-        
+  
+    public function addtoDb() {
+        if(isset($_POST['name'])) {
+            $name =  $_POST['name']; 
+            $description =  $_POST['description']; 
+            $price = trim($_POST['price']);
+            $db = new Db;
+            $db->inserttDb(products, name, description, price, $name, $description, $price);
+
+        }
     }
 
-    // public function edit($id) {
-    //     $this->checkAdmin();
-    //     $id = intval($id);
-    //     if ($id) {
-    //         $db = Db::getInstance();
-    //         $table = Task::getTableName();
-    //         $task = $db->queryOne("SELECT * FROM $table WHERE id = ?", [$id]);
-    //         if ($task) {
-    //             $taskModel = new Task();
-    //             $taskModel->message = $task->message;
-    //             $taskModel->setId($id);
+    public function feelDb() {
+        if(isset($_POST['fname'])) {
+            $fname =  $_POST['fname'];
+            $lname =  $_POST['lname'];
+            $email =  $_POST['email'];
+        
+            $db = new Db;
+            $db->inserttDb(users, first_name, last_name, email, $fname, $lname, $email);        
+            $user = $db->orderby(users);
+            $user_id = $user['id'];
+        
+            $sum = 0;
+            foreach($_COOKIE as $k => $v) {
+                $str = (explode("_", $_COOKIE[$k]));
+                $price = $db->chooseRow(products, id, $str[0]);
+                $prices = $price['price'];
+                $sum = $sum + $str[1] * $prices;
+            }
 
-    //             if (!empty($_POST['message'])) {
-
-    //                 $taskModel->message = $_POST['message'] ?? '';
-    //                 $taskModel->status = 1;
-    //                 $taskModel->filterField('message');
-    //                 $taskModel->checkRequiredAndLength('message', 1000);
-    //                 if (!$taskModel->getErrors()) {
-    //                     $taskModel->updateMessage();
-    //                     $this->redirect('/');
-    //                 }
-    //             }
-    //             $errors = $taskModel->getErrors();
-
-
-    //             return $this->loadView('admin/edit', compact('taskModel', 'errors'));
-    //         }
-    //     }
-    //     header("HTTP/1.0 404 Not Found");
-    //     die;
-    // }
-
-    // public function approve($id)
-    // {
-    //     $this->checkAdmin();
-    //     $id = intval($id);
-    //     if ($id) {
-    //         $db = Db::getInstance();
-    //         $table = Task::getTableName();
-    //         $task = $db->queryOne("SELECT * FROM $table WHERE id = ?", [$id]);
-    //         if ($task) {
-    //             $taskModel = new Task();
-    //             $taskModel->setId($id);
-    //             $taskModel->approve();
-    //             $this->redirect('/');
-
-    //         }
-    //     }
-    //     header("HTTP/1.0 404 Not Found");
-    //     die;
-    // }
-
-
+            $mydate=getdate(date("U"));
+            $mydate[hours] = $mydate[hours] + 1;
+            $date = "$mydate[weekday], $mydate[month] $mydate[mday], $mydate[year], $mydate[hours]:$mydate[minutes]:$mydate[seconds]";
+        
+            $db->inserttDb(orders, user_id, sum, order_date, $user_id, $sum, $date);
+        
+            $orders_id =  $db->orderby(orders);
+            $order_id = $orders_id['id'];
+            foreach($_COOKIE as $k => $v) {
+                $str = (explode("_", $_COOKIE[$k]));
+                $db->inserttDb(order_products, order_id, product_id, qty, $order_id, $str[0], $str[1]);
+            }
+        
+            foreach($_COOKIE as $k => $v) {
+                setcookie($k, $_COOKIE[$k], time() - 2);
+            }
+            header('Location: /?action=index');
+        }
+    }
 }

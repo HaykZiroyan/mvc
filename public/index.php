@@ -16,25 +16,9 @@ if($action == 'index') {
     die($controller->index());
 }
 
-if($action == 'raful') {
-    $controller = new AdminController();
-    die($controller->raful());
-}
-
-if($action == 'addorderinfo') {
-    $controller = new AdminController();
-    die($controller->addorderinfo());
-}
-
 if($action == 'karzina') {
     $controller = new AdminController();
     die($controller->karzina());
-}
-
-
-if($action == 'addtoDb') {
-    $controller = new AdminController();
-    die($controller->addtoDb());
 }
 
 if($action == 'orders') {
@@ -49,6 +33,11 @@ if($action == 'addpr') {
 if($action == 'addDb') {
     $controller = new AdminController();
     die($controller->addDb());
+}
+
+if($action == 'login') {
+    $controller = new AdminController();
+    die($controller->login());
 }
 
 if($action == 'logout') {
